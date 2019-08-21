@@ -1,0 +1,4 @@
+snayder bryan;12345678;DNI;Hombre;29  30  33  34;Doble Piso;Trujillo - Chiclayo;10 AM;21;4;120.0;0.0;30.0;150.0
+Flor lecca;19876534;DNI;Mujer;29  30;Bus Cama;Trujillo - Chiclayo;12 PM;19;2;60.0;0.0;30.0;90.0
+Ivan Cruz;23456789;DNI;Hombre;15  16;Doble Piso;Trujillo - Lima;3 PM;20;2;100.0;0.0;25.0;125.0
+Steven Dcaprio;23453214;DNI;Hombre; 29  30  33  34 ;Bus Cama;Trujillo - Chimbote;10 AM;22;4;80.0;0.0;40.0;120.0
