@@ -26,6 +26,12 @@ import java.awt.Color;
 import javax.swing.JInternalFrame;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Window.Type;
+import java.awt.Dialog.ModalExclusionType;
 
 public class Login extends JFrame {
 
@@ -33,42 +39,15 @@ public class Login extends JFrame {
 	private JTextField txtuser;
 	private JPasswordField txtpass;
 	private Timer tiempo;
-	private JProgressBar barra;
 	private JButton btnAceptar;
-	private JButton btnCancelar;
-	private JLabel lblNewLabel;
 	/**
 	 * Launch the application.
 	 */
-	//es el tiempo que demorara en cargar la barra
-	public final static int TWO_SECOND=10;
-	//declaro un contador
-	int cont;
+
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 	
-	
-	//clase del TimerListener
-	class TimerListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e) 
-		{
-			//incremento del contador
-			cont++;
-			//evaluo la barra en funcion al contador
-			barra.setValue(cont);
-			if(cont==100)
-			{
-				//si cont = 100, el tiempo se detiene
-				tiempo.stop();
-				//escondo la barra de carga
-				esconder();
-				//llamo al jframe Inicio
-				Inicio menu = new Inicio();
-				//hago que el jframe sea visible
-				menu.setVisible(true);
-			}
-		}
-	}
-	
+
 	
 	
 	public static void main(String[] args) {
@@ -88,46 +67,52 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagenes/Llave.jpg")));
-		
+		setFont(null);
 		setResizable(false);
-		
-		
-		setTitle("Gestion de Usuarios");
+		setForeground(new Color(0, 0, 0));
+		setAutoRequestFocus(false);
+		setBackground(new Color(255, 255, 255));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagenes/Llave.jpg")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 307, 232);
+		setBounds(100, 100, 763, 517);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(SystemColor.menu);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIngreseSuUsuario = new JLabel("Ingrese su Usuario y Contrase\u00F1a para ingresar");
-		lblIngreseSuUsuario.setForeground(Color.BLUE);
-		lblIngreseSuUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIngreseSuUsuario.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		lblIngreseSuUsuario.setBounds(10, 11, 257, 26);
-		contentPane.add(lblIngreseSuUsuario);
-		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setForeground(Color.BLUE);
-		lblUsuario.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		lblUsuario.setBounds(32, 48, 83, 19);
+		lblUsuario.setForeground(Color.BLACK);
+		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 17));
+		lblUsuario.setBounds(401, 211, 125, 29);
 		contentPane.add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setForeground(Color.BLUE);
-		lblContrasea.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		lblContrasea.setBounds(32, 88, 83, 19);
+		lblContrasea.setForeground(new Color(0, 0, 0));
+		lblContrasea.setFont(new Font("Arial", Font.PLAIN, 17));
+		lblContrasea.setBounds(401, 252, 125, 29);
 		contentPane.add(lblContrasea);
 		
 		txtuser = new JTextField();
-		txtuser.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtuser.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				
+				txtuser.setText(null);
+				txtuser.setForeground(Color.BLACK);
+			}
+		});
+		txtuser.setForeground(Color.GRAY);
+		txtuser.setText("Ingrese su usuario");
+		txtuser.setHorizontalAlignment(SwingConstants.LEFT);
 		txtuser.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtuser.setBounds(134, 47, 86, 20);
+		txtuser.setBounds(530, 211, 205, 29);
 		contentPane.add(txtuser);
 		txtuser.setColumns(10);
 		
 		txtpass = new JPasswordField();
+		txtpass.setEchoChar('*');
+		txtpass.setToolTipText("Ingrese su contrase\u00F1a");
+		txtpass.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtpass.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -137,20 +122,14 @@ public class Login extends JFrame {
 			}
 		});
 		
-		txtpass.setHorizontalAlignment(SwingConstants.CENTER);
-		txtpass.setBounds(134, 87, 86, 20);
+		txtpass.setHorizontalAlignment(SwingConstants.LEFT);
+		txtpass.setBounds(530, 252, 205, 29);
 		contentPane.add(txtpass);
 		
-		barra = new JProgressBar();
-		barra.setStringPainted(true);
-		barra.setBackground(Color.CYAN);
-		barra.setForeground(Color.BLUE);
-		barra.setFont(new Font("Verdana", Font.ITALIC, 13));
-		barra.setBounds(24, 125, 235, 19);
-		contentPane.add(barra);
-		
-		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnAceptar = new JButton("Iniciar Sesion");
+		btnAceptar.setForeground(new Color(255, 255, 255));
+		btnAceptar.setBackground(new Color(30, 144, 255));
+		btnAceptar.setFont(new Font("Arial", Font.BOLD, 15));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -158,26 +137,35 @@ public class Login extends JFrame {
 				InicioSesion();
 			}
 		});
-		btnAceptar.setBounds(32, 155, 89, 23);
+		btnAceptar.setBounds(475, 328, 224, 36);
 		contentPane.add(btnAceptar);
 		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) 
-			{
-				//llamo al metodo cerrar
-				cerrar();
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/bus.jpg")));
+		lblNewLabel.setBounds(0, 0, 380, 490);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/imagenes/sesion.png")));
+		lblNewLabel_1.setBounds(506, 21, 140, 140);
+		contentPane.add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("Olvide mi contrase\u00F1a");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				JOptionPane.showMessageDialog(null,"Espere plataforma en construccion");
+				
+				reestablecer_contraseña a = new reestablecer_contraseña();
+				a.setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(165, 155, 89, 23);
-		contentPane.add(btnCancelar);
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/Llave.jpg")));
-		lblNewLabel.setBounds(0, 0, 302, 203);
-		contentPane.add(lblNewLabel);
-		barra.setVisible(false);
+		lblNewLabel_2.setForeground(new Color(0, 0, 255));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblNewLabel_2.setBounds(599, 282, 136, 20);
+		contentPane.add(lblNewLabel_2);
 		
 		
 		//para que nuestro GUI se muestre centrado
@@ -200,19 +188,18 @@ public class Login extends JFrame {
 		{
 			Inicio.Usuario =  "SNAYDER BRYAN ROASIO MIRANDA";
 			//llamara al metodo mostrar
-			mostrar();
 		}else if(user.equalsIgnoreCase("David") && clave.compareTo("201814308")==0)
 		{
 			Inicio.Usuario = "David Vargas Domingues";
-			mostrar();
+
 		}else if(user.equalsIgnoreCase("flor") && clave.compareTo("201815315")==0)
 		{
 			Inicio.Usuario = "FLOR LECCA ALTAMIRANO";
-			mostrar();
+
 		}else if(user.equalsIgnoreCase("Ivan") && clave.compareTo("201810960")==0)
 		{
 			Inicio.Usuario = "Ivan Moncada Rodriguez";
-			mostrar();
+
 		}else
 		{
 			//si el usuario o clave son incorrecto, se desplegara un mensaje
@@ -224,52 +211,9 @@ public class Login extends JFrame {
 			txtuser.requestFocus();
 		}
 		
-	}
-	
-	
-	//metodo mostar
-	void mostrar()
-	{
-		//hacemos visible la barra de carga
-		barra.setVisible(true);
-		//el contador empesara desde -1
-		cont=-1;
-		//barra evaluado en 0
-		barra.setValue(0);
-		//hacemos que el numero de % se muestre
-		barra.setStringPainted(true);
-		//asignamos al tiempo un nuevo tiempo, con el tiempo en segundos, y llamando al metodo TimerListener
-		tiempo=new Timer(TWO_SECOND, new TimerListener());
-		//llamo al metodo activar
-		activar();
-	}
-	
-	//metodo esconder
-	void esconder()
-	{
-		//para que solo se ejecute en este gui
-		this.setVisible(false);
-	}
-	
-	//metodo activar
-	void activar()
-	{
-		//comienza a correr el tiempo
-		tiempo.start();
-	}
-	
-	
-	
-	void cerrar(){
-		Object [] opciones ={"Aceptar","Cancelar"};
-		int eleccion = JOptionPane.showOptionDialog(this,"En realidad desea realizar cerrar la aplicacion","Mensaje de Confirmacion",
-		JOptionPane.YES_NO_OPTION,
-		JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
-		if (eleccion == JOptionPane.YES_OPTION)
-		{
-			Cerrar_Aplicacion cerrar = new Cerrar_Aplicacion();
-			cerrar.setVisible(true);
-			dispose();
-		}
+		Inicio a = new Inicio();
+		a.setVisible(true);
+		dispose();
+		
 	}
 }
