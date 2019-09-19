@@ -78,6 +78,7 @@ public class Inicio extends JFrame {
 	
 	
 	public Inicio() {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/imagenes/carro1.png")));
 		//evento para que cuando se presione la X de la ventana, salga un mensaje de alerta
 		addWindowListener(new WindowAdapter() {
@@ -299,6 +300,7 @@ public class Inicio extends JFrame {
 		
 		//para que nuestro GUI se muestre centrado
 		setLocationRelativeTo(null);
+		
 		
 		lblUsuario = new JLabel("");
 		lblUsuario.setIcon(new ImageIcon(Inicio.class.getResource("/iconos22x22/edit-user.png")));

@@ -67,11 +67,13 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		
 		setFont(null);
 		setResizable(false);
 		setForeground(new Color(0, 0, 0));
 		setAutoRequestFocus(false);
 		setBackground(new Color(255, 255, 255));
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagenes/Llave.jpg")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 763, 517);
@@ -103,14 +105,23 @@ public class Login extends JFrame {
 		});
 		txtuser.setForeground(Color.GRAY);
 		txtuser.setText("Ingrese su usuario");
-		txtuser.setHorizontalAlignment(SwingConstants.LEFT);
+		txtuser.setHorizontalAlignment(SwingConstants.CENTER);
 		txtuser.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtuser.setBounds(530, 211, 205, 29);
 		contentPane.add(txtuser);
 		txtuser.setColumns(10);
 		
 		txtpass = new JPasswordField();
+		txtpass.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				txtpass.setText(null);
+				txtpass.setForeground(Color.BLACK);
+			}
+		});
 		txtpass.setEchoChar('*');
+		txtpass.setText("Ingrese su contraseña");
 		txtpass.setToolTipText("Ingrese su contrase\u00F1a");
 		txtpass.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtpass.addKeyListener(new KeyAdapter() {
@@ -122,7 +133,7 @@ public class Login extends JFrame {
 			}
 		});
 		
-		txtpass.setHorizontalAlignment(SwingConstants.LEFT);
+		txtpass.setHorizontalAlignment(SwingConstants.CENTER);
 		txtpass.setBounds(530, 252, 205, 29);
 		contentPane.add(txtpass);
 		
@@ -186,19 +197,18 @@ public class Login extends JFrame {
 		//si user es igual a (nombre) y comparammos la clave(numeros)sea = 0
 		if(user.equalsIgnoreCase("snayder") && clave.compareTo("201815535")==0)
 		{
-			Inicio.Usuario =  "SNAYDER BRYAN ROASIO MIRANDA";
+			Inicio.Usuario =  "SNAYDER BRYAN ROSARIO MIRANDA";
+			inicio();
 			//llamara al metodo mostrar
 		}else if(user.equalsIgnoreCase("David") && clave.compareTo("201814308")==0)
 		{
 			Inicio.Usuario = "David Vargas Domingues";
+			inicio();
 
 		}else if(user.equalsIgnoreCase("flor") && clave.compareTo("201815315")==0)
 		{
 			Inicio.Usuario = "FLOR LECCA ALTAMIRANO";
-
-		}else if(user.equalsIgnoreCase("Ivan") && clave.compareTo("201810960")==0)
-		{
-			Inicio.Usuario = "Ivan Moncada Rodriguez";
+			inicio();
 
 		}else
 		{
@@ -206,14 +216,18 @@ public class Login extends JFrame {
 			JOptionPane.showMessageDialog(null,"acceso incorrecto");
 			//pondremos los cuadros de user y pass vacios para volver a ingresar
 			txtpass.setText(null);
-			txtuser.setText(null);
+			txtuser.setText("Ingrese su usuario");
+			txtuser.requestFocus();
+			
 			//hacemos q el puntero aparesca en la caja de texto, para ingresar
 			txtuser.requestFocus();
 		}
-		
+	}
+	
+	private void inicio()
+	{
 		Inicio a = new Inicio();
 		a.setVisible(true);
 		dispose();
-		
 	}
 }
