@@ -3,8 +3,8 @@ CREATE MASTER KEY ENCRYPTION BY PASSWORD = '23987hxJ#KL95234nl0zBe';
 GO
 -- Creamos el certificado
 CREATE CERTIFICATE MiPrimerCertificado
-	ENCRYPTION BY PASSWORD = 'pGFD4bb925DGvbd2439587y',
-   WITH SUBJECT = 'Prueba'   
+	ENCRYPTION BY PASSWORD = 'pGFD4bb925DGvbd2439587y'
+   WITH SUBJECT = 'prueba' 
 GO 
 
 
@@ -37,3 +37,5 @@ go
 
 SELECT * FROM sys.symmetric_keys
 go
+
+insert into bus.destinos values(001,'Trujillo','paname 519. Urb. Torres araujo')
