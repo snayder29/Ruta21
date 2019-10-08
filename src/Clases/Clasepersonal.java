@@ -1,5 +1,8 @@
 package Clases;
 
+import Validaciones.*;
+import java.util.*;
+
 public class Clasepersonal {
 	
 	private int doc_identidad, cod_personal, edad, cod_ocupacion;
@@ -138,7 +141,6 @@ public class Clasepersonal {
 	public void setF_modificacion(String f_modificacion) {
 		this.f_modificacion = f_modificacion;
 	}
-
 
 
 
