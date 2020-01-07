@@ -115,7 +115,7 @@ public class Login extends JFrame {
 		txtpass.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+								
 				txtpass.setText(null);
 				txtpass.setForeground(Color.BLACK);
 			}
@@ -166,10 +166,12 @@ public class Login extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
-				JOptionPane.showMessageDialog(null,"Espere plataforma en construccion");
+				//JOptionPane.showMessageDialog(null,"Espere plataforma en construccion");
+				
 				
 				reestablecer_contraseña a = new reestablecer_contraseña();
 				a.setVisible(true);
+				dispose();
 			}
 		});
 		lblNewLabel_2.setForeground(new Color(0, 0, 255));

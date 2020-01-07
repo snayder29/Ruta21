@@ -84,7 +84,7 @@ public class val_personal {
 	public static boolean isEdad(int Edad)
 	{
 		try {
-			String pattern = "[0-9]{3}";
+			String pattern = "[0-9]{2}";
 			return true;
 		} catch (Exception e) {
 			return false;

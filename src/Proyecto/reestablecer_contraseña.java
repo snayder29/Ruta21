@@ -344,8 +344,8 @@ public class reestablecer_contraseña extends JFrame {
 					}else
 					{
 						JOptionPane.showMessageDialog(null, "Erro las claves no coinciden \n porfavor intentelo nuevamente");
-						pwscontraseña1.setText("ingrese contraseña");
-						pwscontraseña2.setText("ingrese contraseña");
+						pwscontraseña1.setText("null");
+						pwscontraseña2.setText("null");
 						pwscontraseña1.requestFocus();
 					}
 					
